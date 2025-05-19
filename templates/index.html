@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor XML</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        .header {
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+        .footer {
+            border-top: 1px solid #e5e5e5;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 class="text-center">Convertidor XML</h2>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        Subir archivo XML
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/upload" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Seleccione un archivo XML o PDF que contenga XML:</label>
+                                <input type="file" class="form-control" id="file" name="file" accept=".xml,.pdf" required>
+                                <div class="form-text">
+                                    Puede subir archivos XML directamente o archivos PDF que contengan código XML dentro.
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Subir y Validar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Convertidor XML &copy; 2025</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

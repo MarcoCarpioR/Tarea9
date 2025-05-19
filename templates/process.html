@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesar XML</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        .header {
+            border-bottom: 1px solid #e5e5e5;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+        .footer {
+            border-top: 1px solid #e5e5e5;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            color: #777;
+        }
+        .option-card {
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 class="text-center">Procesar XML</h2>
+            <p class="text-center">Archivo: {{ filename }}</p>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Opciones de procesamiento
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <form method="POST" action="/convert">
+                                    <input type="hidden" name="filename" value="{{ filename }}">
+                                    <input type="hidden" name="method" value="1">
+                                    <div class="card option-card h-100" onclick="this.closest('form').submit()">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">1. Validar XML</h5>
+                                            <p class="card-text">Verifica si el archivo XML es válido.</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <form method="POST" action="/convert">
+                                    <input type="hidden" name="filename" value="{{ filename }}">
+                                    <input type="hidden" name="method" value="2">
+                                    <div class="card option-card h-100" onclick="this.closest('form').submit()">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">2. Exportar a CSV</h5>
+                                            <p class="card-text">Convierte el XML a CSV usando el método Example.</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <form method="POST" action="/convert">
+                                    <input type="hidden" name="filename" value="{{ filename }}">
+                                    <input type="hidden" name="method" value="3">
+                                    <div class="card option-card h-100" onclick="this.closest('form').submit()">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">3. ElementTree → Dict</h5>
+                                            <p class="card-text">Extrae datos usando ElementTree.</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <form method="POST" action="/convert">
+                                    <input type="hidden" name="filename" value="{{ filename }}">
+                                    <input type="hidden" name="method" value="4">
+                                    <div class="card option-card h-100" onclick="this.closest('form').submit()">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">4. MiniDOM → Dict</h5>
+                                            <p class="card-text">Extrae datos usando MiniDOM.</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <form method="POST" action="/convert">
+                                    <input type="hidden" name="filename" value="{{ filename }}">
+                                    <input type="hidden" name="method" value="5">
+                                    <div class="card option-card h-100" onclick="this.closest('form').submit()">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">5. Método Inválido 1</h5>
+                                            <p class="card-text">Reemplaza caracteres '&' con '&amp;'.</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <form method="POST" action="/convert">
+                                    <input type="hidden" name="filename" value="{{ filename }}">
+                                    <input type="hidden" name="method" value="6">
+                                    <div class="card option-card h-100" onclick="this.closest('form').submit()">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">6. Método Inválido 2</h5>
+                                            <p class="card-text">Formatea el XML con BeautifulSoup.</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <form method="POST" action="/convert">
+                                    <input type="hidden" name="filename" value="{{ filename }}">
+                                    <input type="hidden" name="method" value="7">
+                                    <div class="card option-card h-100" onclick="this.closest('form').submit()">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">7. Exportar a JSON</h5>
+                                            <p class="card-text">Convierte el XML a JSON usando ElementTree.</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-4">
+            <a href="/" class="btn btn-primary">Volver al inicio</a>
+        </div>
+
+        <div class="footer">
+            <p>Convertidor XML &copy; 2025</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

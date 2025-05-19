@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<product>
+  <name>Laptop Pro</name>
+  <model>X1 Carbon</model>
+  <manufacturer>Lenovo</manufacturer>
+  <price currency="USD">1299.99</price>
+  <release_year type="integer">2023</release_year>
+  <is_available type="boolean">true</is_available>
+  <features>
+    <feature>Intel Core i7</feature>
+    <feature>16GB RAM</feature>
+    <feature>512GB SSD</feature>
+  </features>
+</product>

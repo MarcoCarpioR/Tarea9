@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company>
+  <department name="Sales">
+    <employee id="101">
+      <name>Alice Smith</name>
+      <role>Sales Manager</role>
+      <salary>60000</salary>
+    </employee>
+    <employee id="102">
+      <name>Bob Johnson</name>
+      <role>Sales Representative</role>
+      <salary>45000</salary>
+    </employee>
+  </department>
+  <department name="Development">
+    <employee id="201">
+      <name>Charlie Brown</name>
+      <role>Software Engineer</role>
+      <salary>75000</salary>
+    </employee>
+  </department>
+</company>
